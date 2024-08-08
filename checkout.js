@@ -26,7 +26,7 @@ router.get('/checkout', (req, res) => {
 
     // Sepetteki ürünleri almak için SQL sorgusu
     const query = `
-        SELECT product_name, siparis_adeti, price
+        SELECT id, product_name, siparis_adeti, price, size, photograph, table_name
         FROM cart
         WHERE user_id = ?
     `;
@@ -43,7 +43,7 @@ router.get('/checkout', (req, res) => {
             sepetToplami += item.siparis_adeti * item.price;
         });
 
-        // Kargo ücreti (sabit bir değer olarak alabilirsiniz, örneğin $10)
+        // Kargo ücreti (sabit bir değer olarak alabilirsiniz, örneğin $100)
         const kargoUcreti = 100;
 
         // Toplam fiyat
@@ -54,7 +54,72 @@ router.get('/checkout', (req, res) => {
             products: results,
             sepetToplami: sepetToplami,
             kargoUcreti: kargoUcreti,
-            toplamFiyat: toplamFiyat
+            toplamFiyat: toplamFiyat,
+            message: req.flash('success') // Başarı mesajını ekleyin
+        });
+    });
+});
+
+// Ödeme yapma işlemi için rota
+router.post('/checkout', (req, res) => {
+    const userId = req.session.userId; // Oturumda tanımlanan kullanıcı ID'si
+
+    if (!userId) {
+        return res.redirect('/login-signup'); // Kullanıcı giriş yapmamışsa login sayfasına yönlendir
+    }
+
+    // Sepetteki ürünleri almak için SQL sorgusu
+    const selectQuery = `
+        SELECT id, product_name, siparis_adeti, price, size, photograph, table_name
+        FROM cart
+        WHERE user_id = ?
+    `;
+
+    db.query(selectQuery, [userId], (err, results) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Server Error');
+        }
+
+        // `satis_tablosu` tablosuna ekleme işlemi için SQL sorgusu
+        const insertQuery = `
+            INSERT INTO satis_tablosu (user_id, product_name, satılan_adet, p_id, table_name, toplam_fiyat, price, size, photograph)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `;
+
+        // `satis_tablosu` tablosuna ekleme işlemini gerçekleştirin
+        results.forEach(item => {
+            const values = [
+                userId, // user_id (oturumu başlatan kullanıcının ID'si)
+                item.product_name,
+                item.siparis_adeti,
+                item.id, // p_id
+                item.table_name, // table_name (cart tablosundan alınan bilgi)
+                item.siparis_adeti * item.price, // toplam_fiyat
+                item.price,
+                item.size,
+                item.photograph
+            ];
+
+            db.query(insertQuery, values, (err) => {
+                if (err) {
+                    console.error(err);
+                    return res.status(500).send('Server Error');
+                }
+            });
+        });
+
+        // Sepeti temizleme
+        const deleteQuery = `DELETE FROM cart WHERE user_id = ?`;
+        db.query(deleteQuery, [userId], (err) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Server Error');
+            }
+
+            // Ödeme işlemi tamamlandığında başarı mesajı ve yönlendirme
+            req.flash('message', 'Ürün başarıyla sepete eklendi');
+            res.redirect('/checkout'); // Başarı mesajı ile checkout sayfasına yönlendir
         });
     });
 });

@@ -111,6 +111,43 @@ address {
   font-style: normal;
   line-height: inherit;
 }
+.modal {
+  display: none; /* Varsayılan olarak gizli */
+  position: fixed; 
+  z-index: 1000; /* Modal'in üstte olması için */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); /* Arka plan rengi ve opaklık */
+}
+
+/* Modal içeriği */
+.modal-content {
+  background-color: #eddfb2;
+  margin: 15% auto; /* Modal içeriğinin ortalanması */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 20px;
+}
+
+/* Kapatma butonu */
+.close {
+  color: black;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: grey;
+  text-decoration: none;
+  cursor: pointer;
+}
 
 ol,
 ul,

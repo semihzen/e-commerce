@@ -26,6 +26,15 @@
     <link href="/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+<script> function showAlert(message) {
+    if (message) {
+        alert(message);
+    }
+}
+window.onload = function() {
+    const message = "<%= message %>";
+    showAlert(message);
+};</script>
 
 <body>
     <!-- Topbar Start -->
@@ -257,7 +266,9 @@
                         </div>
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
-                        <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Ödeme Yap</button>
+                        <form id="payment-form" action="/checkout" method="post">
+                            <button type="submit" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Ödeme Yap</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -365,7 +376,19 @@
         } else { 
           x.className = x.className.replace(" w3-show", "");
         }
-      }</script>
+      }
+      function showAlert(message) {
+            if (message) {
+                alert(message);
+            }
+        }
+
+        // Server tarafından gönderilen mesajı JavaScript değişkenine aktar
+        const message = "<%= message %>";
+        // Mesajı göster
+        window.onload = function() {
+            showAlert(message);
+        };</script>
  
 </body>
 

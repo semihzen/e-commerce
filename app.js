@@ -58,7 +58,7 @@ app.use('/', productShowRoutes);
 app.use('/', indexRoutes); 
 app.use('/', detailRouter);
 app.use('/', cartRouter);
-app.use(checkoutRouter);
+app.use('/',checkoutRouter);
 app.get("/", (req, res) => {
   res.render("index");
 });
