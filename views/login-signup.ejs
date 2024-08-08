@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Chuck Muck Login&Sign Up</title>
+  <link rel="stylesheet" href="\loginsignup.css">
+  <script>
+    function showAlert(message) {
+        if (message) {
+            alert(message);
+        }
+    }
+    window.onload = function() {
+        const message = "<%= message %>";
+        showAlert(message);
+    };
+</script>
+  
+</head>
+<body>
+
+<div class="wrapper">
+  <div class="title-text">
+    <div class="title login"> Giriş Yap</div>
+    <div class="title signup"> Kaydol</div>
+  </div>
+  <div class="form-container">
+    <div class="slide-controls">
+      <input type="radio" name="slide" id="login" checked>
+      <input type="radio" name="slide" id="signup">
+      <label for="login" class="slide login">Giriş Yap</label>
+      <label for="signup" class="slide signup">Kaydol</label>
+      <div class="slider-tab"></div>
+    </div>
+    <div class="form-inner">
+      <form action="/signin" method="POST" class="login">
+        <div class="field">
+          <input type="text" name="email" placeholder="Email Adresi" required>
+        </div>
+        <div class="field">
+          <input type="password" name="password" placeholder="Şifre" required>
+        </div>
+        <div class="pass-link"><a href="#">Şifreni mi unuttun?</a></div>
+        <div class="field btn">
+          <div class="btn-layer"></div>
+          <input type="submit" value="Giriş Yap">
+        </div>
+        
+      </form>
+      <form id="signupForm" action="/signup" method="POST" class="signup">
+        <div class="field">
+          <input type="text" name="email" placeholder="E-mail Adresi" required>
+        </div>
+        <div class="field">
+          <input type="text" name="name" placeholder="Ad" required>
+        </div>
+        <div class="field">
+          <input type="text" name="surname" placeholder="Soyad" required>
+        </div>
+        <div class="field">
+          <input type="password" id="password" name="password" placeholder="Şifre" required>
+        </div>
+        <div class="field">
+          <input type="password" id="confirmPassword"  name="confirmPassword" placeholder="Şifreyi Doğrula" required>
+        </div>
+        <div class="field btn">
+          <div class="btn-layer"></div>
+          <input type="submit" value="Kayıt ol">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="\loginsignup.js"></script>
+<script>
+  document.getElementById('signupForm').addEventListener('submit', function(event) {
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+
+    if (password.length < 6) {
+      alert('Şifre en az 6 karakter uzunluğunda olmalıdır.');
+      event.preventDefault(); // Formun gönderilmesini engelle
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      alert('Şifreler eşleşmiyor.');
+      event.preventDefault(); // Formun gönderilmesini engelle
+      return;
+    }
+  });
+</script>
+
+  
+</body>
+</html>

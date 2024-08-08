@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ürünü Düzenle</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* Tam ekran yüksekliği */
+      background-color: white; /* Gölge arka plan */
+      
+    }
+
+    .edit-container {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      width: 400px;
+      position: relative;
+    }
+
+    .form-group {
+      margin-bottom: 5px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .btn {
+      padding: 6px 9px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .btn-primary {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #45a049;
+    }
+
+    .btn-secondary {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background-color: #e53935;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #f44336;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      padding: 5px 10px;
+      font-size: 18px;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body id="update">
+  <div class="edit-container" >
+    <button class="close-btn" onclick="window.parent.closeEditIframe()">×</button>
+    <h2>Ürünü Düzenle</h2>
+    <form id="editForm">
+      <input type="hidden" id="editProductId" value="<%= product.id %>">
+      <input type="hidden" id="editProductTable" value="<%= table %>">
+      <div class="form-group">
+        <label for="editProductName">Ürün Adı:</label>
+        <input type="text" id="editProductName" class="form-control" value="<%= product.product_name %>">
+      </div>
+      <div class="form-group">
+        <label for="editProductExplain">Ürün Açıklaması:</label>
+        <input type="text" id="editProductExplain" class="form-control" value="<%= product.product_explain %>">
+      </div>
+      <div class="form-group">
+        <label for="editProductPrice">Fiyatı:</label>
+        <input type="number" id="editProductPrice" class="form-control" value="<%= product.price %>">
+      </div>
+      <div class="form-group">
+        <label for="editProductColor">Rengi:</label>
+        <input type="text" id="editProductColor" class="form-control" value="<%= product.color %>">
+      </div>
+      <div class="form-group">
+        <label for="editProductNumber">Kalan Adet:</label>
+        <input type="number" id="editProductNumber" class="form-control" value="<%= product.number %>">
+      </div>
+      <div class="form-group"  id="formFieldkalıp" style="display: block;">
+        <label for="editProductForm">Kalıp:</label>
+        <input type="text" id="editProductForm" class="form-control" value="<%= product.form %>">
+      </div>
+      <div class="form-group">
+        <label for="editProductSize">Bedeni:</label>
+        <input type="text" id="editProductSize" class="form-control" value="<%= product.size %>">
+      </div>
+      <div class="form-group" id="formFieldPaca" style="display: none;">
+        <label for="editProductPaca">Paça Türü:</label>
+        <input type="text" id="editProductPaca" class="form-control" value="<%= product.paca %>">
+      </div>
+      <div class="form-group" id="formFieldSweatshirt" style="display: none;">
+        <label for="editProductKapuson">Kapuson:</label>
+        <input type="text" id="editProductKapuson" class="form-control" value="<%= product.kapuson %>">
+      </div>
+      <div class="form-group" id="formFieldMarka" style="display: none;">
+        <label for="editProductMarka">Marka:</label>
+        <input type="text" id="editProductMarka" class="form-control" value="<%= product.marka %>">
+      </div>
+      
+      
+      <div class="form-group">
+        <label for="editProductGender">Cinsiyeti:</label>
+        <input type="text" id="editProductGender" class="form-control" value="<%= product.gender %>">
+      </div>
+      <button type="submit" class="btn btn-primary">Güncelle</button>
+      <button type="button" class="btn btn-secondary" onclick="window.parent.closeEditIframe()">Kapat</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('editForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const id = document.getElementById('editProductId').value;
+  const table = document.getElementById('editProductTable').value;
+  const productName = document.getElementById('editProductName').value;
+  const productExplain = document.getElementById('editProductExplain').value;
+  const productPrice = document.getElementById('editProductPrice').value;
+  const productColor = document.getElementById('editProductColor').value;
+  const productNumber = document.getElementById('editProductNumber').value;
+  const productForm = document.getElementById('editProductForm').value;
+  const productSize = document.getElementById('editProductSize').value;
+  const productGender = document.getElementById('editProductGender').value;
+  const productPaca = document.getElementById('editProductPaca').value; // Paça verisini ekleyin
+  const productkapuson = document.getElementById('editProductKapuson').value;
+  const productmarka = document.getElementById('editProductMarka').value;
+
+  
+
+  fetch(`/edit-product/${id}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      product_name: productName,
+      product_explain: productExplain,
+      price: productPrice,
+      color: productColor,
+      number: productNumber,
+      form: productForm,
+      size: productSize,
+      gender: productGender,
+      paca: productPaca,// Paça verisini ekleyin
+      marka: productmarka,
+      kapuson: productkapuson,
+      table: table
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      alert("Ürün başarıyla güncellendi!");
+      window.parent.closeEditIframe();
+      window.parent.location.reload(); // Ana pencereyi yenile
+    } else {
+      alert("Ürün güncellenirken bir hata oluştu.");
+    }
+  });
+});
+
+window.addEventListener('load', function() {
+  var updateSection = document.getElementById('update');
+  if (updateSection) {
+    updateSection.scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+window.addEventListener('load', function() {
+  const tableName = document.getElementById('editProductTable').value;
+
+  // Form alanlarının id'leri
+  const pacaInput = document.getElementById('formFieldPaca');
+  const kapusonInput = document.getElementById('formFieldSweatshirt');
+  const markaInput = document.getElementById('formFieldMarka'); // ID'yi düzelttik
+  const kalıpInput = document.getElementById('formFieldkalıp');
+ 
+  // Tablonun ismine göre form alanlarını göster veya gizle
+  if (tableName === 'esofman') {
+    pacaInput.style.display = 'block'; // Göster
+  } else {
+    pacaInput.style.display = 'none'; // Gizle
+  }
+  if (tableName === 'sweatshirt') {
+    kapusonInput.style.display = 'block'; // Göster
+  } else {
+    kapusonInput.style.display = 'none'; // Gizle
+  }
+  if (tableName === 'shoes') {
+    markaInput.style.display = 'block'; // Göster
+    kalıpInput.style.display = 'none';
+  } else {
+    markaInput.style.display = 'none'; // Gizle
+    kalıpInput.style.display = 'block';
+  }
+});
+
+
+  </script>
+</body>
+</html>

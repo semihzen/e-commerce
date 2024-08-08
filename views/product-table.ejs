@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>ChuckMuck Ürün ve Satış Tablosu</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style2.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Updated: Apr 20 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+   
+ <!-- ======= Header ======= -->
+ <header id="header" class="header fixed-top d-flex align-items-center">
+
+  <div class="d-flex align-items-center justify-content-between">
+    <a href="/" class="logo d-flex align-items-center">
+      
+      <span class="d-none d-lg-block">ChuckMuck</span>
+    </a>
+    <i class="bi bi-list toggle-sidebar-btn"></i>
+  </div><!-- End Logo -->
+
+ 
+
+  <nav class="header-nav ms-auto">
+    <ul class="d-flex align-items-center">
+
+      <li class="nav-item d-block d-lg-none">
+        <a class="nav-link nav-icon search-bar-toggle " href="#">
+          <i class="bi bi-search"></i>
+        </a>
+      </li><!-- End Search Icon-->
+
+      
+
+      
+      <li class="nav-item dropdown pe-3">
+
+        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+          <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+          <span class="d-none d-md-block dropdown-toggle ps-2">Semih Zenginoğlu</span>
+        </a><!-- End Profile Iamge Icon -->
+
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+          <li class="dropdown-header">
+            <h6>Semih Zenginoğlu</h6>
+            <span>Mağaza Sahibi</span>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+
+          <li>
+            <a class="dropdown-item d-flex align-items-center" href="/admin-profile">
+              <i class="bi bi-person"></i>
+              <span>Profilim</span>
+            </a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+
+          <li>
+            <a class="dropdown-item d-flex align-items-center" href="/signout">
+              <i class="bi bi-box-arrow-right"></i>
+              <span>Çıkış Yap</span>
+            </a>
+          </li>
+
+        </ul><!-- End Profile Dropdown Items -->
+      </li><!-- End Profile Nav -->
+
+    </ul>
+  </nav><!-- End Icons Navigation -->
+
+</header><!-- End Header -->
+
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+
+  <ul class="sidebar-nav" id="sidebar-nav">
+
+    <li class="nav-item">
+      <a class="nav-link " href="/admin">
+        <i class="bi bi-grid"></i>
+        <span>Panel</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-journal-text"></i><span> Ürün Ekle</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="/form">
+            <i class="bi bi-circle"></i><span>Ürün Ekleme Sayfası</span>
+          </a>
+        </li>
+        
+       
+      </ul>
+    </li><!-- End Forms Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-layout-text-window-reverse"></i><span>Tablolar</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        
+        <li>
+          <a href="/salestable">
+            <i class="bi bi-circle"></i><span>Satış Tablosu</span>
+          </a>
+        </li>
+        <li>
+          <a href="/products-table">
+            <i class="bi bi-circle"></i><span>Ürün Tablosu</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Tables Nav -->
+
+
+  
+
+    <li class="nav-heading">Admin Sayfası</li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/admin-profile">
+        <i class="bi bi-person"></i>
+        <span>Profil</span>
+      </a>
+    </li><!-- End Profile Page Nav -->
+    
+  </ul>
+
+  
+
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Ürün Tablosu (Bütün Ürünler)</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/products-table">Anasayfa</a></li>
+          <li class="breadcrumb-item">Tablo</li>
+          <li class="breadcrumb-item active">Satış</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">T-shirt Tablosu</h5>
+              <!-- Table with stripped rows -->
+              <table class="table datatable">
+                <thead>
+                  <tr>
+                    <th>Ürün Adı</th>
+                    <th>Ürün Açıklaması</th>
+                    <th>Fiyatı</th>
+                    <th>Rengi</th>
+                    <th>Kalan Adet</th>
+                    <th>Kalıp</th>
+                    <th>Bedeni</th>
+                    <th>Ürünün Cinsiyeti</th>
+                    <th>Ürün Fotoğrafı</th>
+                    <th>Düzenle veya sil</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% tshirts.forEach(tshirt => { %>
+                    <tr>
+                    
+                      <td><%= tshirt.product_name %></td>
+                      <td><%= tshirt.product_explain %></td>
+                      <td><%= tshirt.price %></td>
+                      <td><%= tshirt.color %></td>
+                      <td><%= tshirt.number %></td>
+                      <td><%= tshirt.form %></td>
+                      <td><%= tshirt.size %></td>
+                      <td><%= tshirt.gender %></td>
+                      
+                      <td>
+                        <% if (tshirt.photograph) { %>
+                          <img src="data:image/jpeg;base64,<%= Buffer.from(tshirt.photograph).toString('base64') %>" alt="T-shirt Image"style="width: 100px; height: auto; object-fit: contain;">
+                          
+                        <% } %>
+                        
+                      </td>
+                      <td colspan="2"><button class="btn btn-primary" onclick="editProduct(<%= tshirt.id %>, 'tshirt')">Düzenle</button>
+                        <button class="btn btn-danger" onclick="deleteProduct(<%= tshirt.id %>, 'tshirt')">Sil</button>
+                        </td>
+                      
+                    </tr>
+                  <% }); %>
+                 
+                </tbody>
+              </table>
+             
+              
+              <!-- End Table with stripped rows -->
+            </div>
+          </div>
+        </div>
+        <!-- Edit Form iframe -->
+        <div id="editIframeContainer" style="display:none;">
+          <iframe id="editIframe"  style="width:100%; height:750px; border-radius:15px;"></iframe>
+                 </div>
+      </div>
+    </section>
+    
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Eşofman Tablosu</h5>
+    
+              <!-- Table with stripped rows -->
+              <table class="table datatable">
+                <thead>
+                  <tr>
+                    <th>Ürün Adı</th>
+                    <th>Ürün Açıklaması</th>
+                    <th>Fiyatı</th>
+                    <th>Rengi</th>
+                    <th>Kalan Adet</th>
+                    <th>Kalıp</th>
+                    <th>Bedeni</th>
+                    <th>Paça Türü</th>
+
+                    <th>Ürünün Cinsiyeti</th>
+                    <th>Ürün Fotoğrafı</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% products.forEach(product => { %>
+                    <tr>
+                      <td><%= product.product_name %></td>
+                      <td><%= product.product_explain %></td>
+                      <td><%= product.price %></td>
+                      <td><%= product.color %></td>
+                      <td><%= product.number %></td>
+                      <td><%= product.form %></td>
+                   
+
+                      <td><%= product.size %></td>
+                      <td><%= product.paca %></td>
+                      <td><%= product.gender %></td>
+                      <td>
+                        <% if (product.photograph) { %>
+                          <img  src="data:image/jpeg;base64,<%= Buffer.from(product.photograph).toString('base64') %>" alt="Product Image" style="width: 100px; height: auto; object-fit: contain;">
+                        <% } %>
+                      </td>
+                      <td colspan="2"><button class="btn btn-primary" onclick="editProduct(<%= product.id %>, 'esofman')">Düzenle</button>
+                        <button class="btn btn-danger" onclick="deleteProduct(<%= product.id %>, 'esofman')">Sil</button>
+                        </td>
+                    </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+    
+            </div>
+          </div>
+        </div>
+        <div id="editIframeContainer" style="display:none;">
+          <iframe id="editIframe"  style="width:100%; height:750px; border-radius:15px;"></iframe>
+                 </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Sweatshirt Tablosu</h5>
+              
+              <!-- Table with stripped rows -->
+              <table class="table datatable">
+                <thead>
+                  <tr>
+                    <th>Ürün Adı</th>
+                    <th>Ürün Açıklaması</th>
+                    <th>Fiyatı</th>
+                    <th>Rengi</th>
+                    <th>Kalan Adet</th>
+                    <th>Kalıp</th>
+                    <th>Bedeni</th>
+                    <th>Kapüşon Durumu</th>
+                    <th>Ürünün Cinsiyeti</th>
+                    <th>Ürünün Fotoğrafı</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (sweatshirts.length > 0) { %>
+                    <% sweatshirts.forEach(sweatshirt => { %>
+                      <tr>
+                        <td><%= sweatshirt.product_name %></td>
+                        <td><%= sweatshirt.product_explain %></td>
+                        <td><%= sweatshirt.price %></td>
+                        <td><%= sweatshirt.color %></td>
+                        <td><%= sweatshirt.number %></td>
+                        <td><%= sweatshirt.form %></td>
+                        <td><%= sweatshirt.size %></td>
+                        <td><%= sweatshirt.kapuson %></td>
+                        <td><%= sweatshirt.gender %></td>
+                        <td>
+                          <img src="data:image/jpeg;base64,<%= Buffer.from(sweatshirt.photograph).toString('base64') %>" 
+                               alt="Sweatshirt Image" 
+                               style="width: 100px; height: auto; object-fit: contain;">
+                        </td>
+                        <td colspan="2"><button class="btn btn-primary" onclick="editProduct(<%= sweatshirt.id %>, 'sweatshirt')">Düzenle</button>
+                          <button class="btn btn-danger" onclick="deleteProduct(<%= sweatshirt.id %>, 'sweatshirt')">Sil</button>
+                          </td>
+                      </tr>
+                    <% }); %>
+                  <% } else { %>
+                    <tr>
+                      <td colspan="10">No Sweatshirts found.</td>
+                    </tr>
+                  <% } %>
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+  
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </section>
+      <section class="section">
+        <div class="row">
+          <div class="col-lg-12">
+  
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Şort Tablosu</h5>
+                
+                <!-- Table with stripped rows -->
+                <table class="table datatable">
+                  <thead>
+                    <tr>
+                      <th>
+                    Ürün Adı  
+                      </th>
+                      <th>Ürün Açıklaması</th>
+  
+                      <th>Fiyatı</th>
+                      <th>Rengi</th>
+                      
+                      <th>Kalan Adet</th>
+                      <th>Kalıp</th>
+                      <th>Bedeni</th>
+                      <th>Ürünün Cinsiyeti</th>
+                      <th>Ürünün Fotoğrafı</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% if (shorts.length > 0) { %>
+                      <% shorts.forEach(short => { %>
+                        <tr>
+                          <td><%= short.product_name %></td>
+                          <td><%= short.product_explain %></td>
+                          <td><%= short.price %></td>
+                          <td><%= short.color %></td>
+                          <td><%= short.number %></td>
+                          <td><%= short.form %></td>
+                          <td><%= short.size %></td>
+                          <td><%= short.gender %></td>
+                          <td>
+                            <% if (short.photograph) { %>
+                              <img src="data:image/jpeg;base64,<%= Buffer.from(short.photograph).toString('base64') %>" 
+                                   alt="Short Image" 
+                                   style="width: 100px; height: auto; object-fit: contain;">
+                            <% } else { %>
+                              <img src="img/default.jpg" 
+                                   alt="Default Image" 
+                                   style="width: 100px; height: auto; object-fit: contain;">
+                            <% } %>
+                          </td>
+                          <td colspan="2"><button class="btn btn-primary" onclick="editProduct(<%= short.id %>, 'short')">Düzenle</button>
+                            <button class="btn btn-danger" onclick="deleteProduct(<%= short.id %>, 'short')">Sil</button>
+                            </td>
+                        </tr>
+                      <% }); %>
+                    <% } else { %>
+                      <tr>
+                        <td colspan="9">No Shorts found.</td>
+                      </tr>
+                    <% } %>
+                  </tbody>
+                  
+                  </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+  
+              </div>
+            </div>
+  
+          </div>
+        </div>
+      </section>
+    </section>
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Shoes Tablosu</h5>
+    
+              <!-- Table with stripped rows -->
+              <table class="table datatable">
+                <thead>
+                  <tr>
+                    <th>Ürün Adı</th>
+                    <th>Ürün Açıklaması</th>
+                    <th>Fiyatı</th>
+                    <th>Rengi</th>
+                    <th>Kalan Adet</th>
+                    <th>Marka</th>
+                    <th>Ayakkabı Numarası</th>
+                    <th>Ürünün Cinsiyeti</th>
+                    <th>Ürünün Fotoğrafı</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (shoes.length > 0) { %>
+                    <% shoes.forEach(shoe => { %>
+                      <tr>
+                        <td><%= shoe.product_name %></td>
+                        <td><%= shoe.product_explain %></td>
+                        <td><%= shoe.price %></td>
+                        <td><%= shoe.color %></td>
+                        <td><%= shoe.number %></td>
+                        <td><%= shoe.marka %></td>
+                        <td><%= shoe.size %></td>
+                        <td><%= shoe.gender %></td>
+                        <td>
+                          <img src="data:image/jpeg;base64,<%= Buffer.from(shoe.photograph).toString('base64') %>" 
+                               alt="Shoe Image" 
+                               style="width: 100px; height: auto; object-fit: contain;">
+                        </td>
+                        <td colspan="2"><button class="btn btn-primary" onclick="editProduct(<%= shoe.id %>, 'shoes')">Düzenle</button>
+                          <button class="btn btn-danger" onclick="deleteProduct(<%= shoe.id %>, 'shoes')">Sil</button>
+                          </td>
+                      </tr>
+                    <% }); %>
+                  <% } else { %>
+                    <tr>
+                      <td colspan="9">No Shoes found.</td>
+                    </tr>
+                  <% } %>
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+    
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Semih Zenginoğlu</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+      Designed by <a href="https://www.linkedin.com/in/semih-zengino%C4%9Flu-95378b227/">Semih Zenginoğlu</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main2.js"></script>
+  <script>
+    function editProduct(id, table) {
+      // iframe URL'sini ayarla ve göster
+      document.getElementById('editIframe').src = `/edit-product-form/${id}?table=${table}`;
+      document.getElementById('editIframeContainer').style.display = 'block';
+    }
+  
+    function closeEditIframe() {
+      document.getElementById('editIframeContainer').style.display = 'none';
+      document.getElementById('editIframe').src = '';
+    }
+  
+    function deleteProduct(id, table) {
+      if (confirm("Bu ürünü silmek istediğinize emin misiniz?")) {
+        fetch(`/delete-product/${id}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ table: table })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert("Ürün başarıyla silindi!");
+            location.reload();
+          } else {
+            alert("Ürün silinirken bir hata oluştu.");
+          }
+        });
+      }
+    }
+  </script>
+  
+
+</body>
+
+</html>

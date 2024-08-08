@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Chuck Muck Sepetim</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid">
+        <div class="row bg-secondary py-2 px-xl-5">
+            <!-- <div class="col-lg-6 d-none d-lg-block">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-dark" href="">FAQs</a>
+                    <span class="text-muted px-2">|</span>
+                    <a class="text-dark" href="">Help</a>
+                    <span class="text-muted px-2">|</span>
+                    <a class="text-dark" href="">Support</a>
+                </div>
+            </div> -->
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    
+                    <a class="text-dark px-2" href="https://www.linkedin.com/in/semih-zengino%C4%9Flu-95378b227/">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a class="text-dark px-2" href="https://www.instagram.com/chuckmuckstore/">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center py-3 px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <a href="/" class="text-decoration-none">
+                    <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">Chuck</span>Muck</h1>
+                </a>
+            </div>
+            <div class="col-lg-6 col-6 text-left">
+                <form action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Ürüne Göre Arayın">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-transparent text-primary">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-3 col-6 text-right">
+                <% if (user) { %>
+                    <div class="w3-dropdown-click">
+                      <button onclick="myFunction()" class="w3-button custom-button">
+                        <h4 style="color:rgb(192, 106, 98);"><i class="fa-regular fa-user"></i> <%= user.name %> <%= user.surname %></h4>
+                      </button>
+                      <div id="Demo" class="w3-dropdown-content w3-bar-block w3-animate-zoom">
+                        <!-- <a href="#" class="w3-bar-item w3-button">Profilim</a> -->
+                        
+                        <% if (user.email === 'admin@admin.com') { %>
+                          <a href="/admin" class="w3-bar-item w3-button">Admin sayfam</a>
+                        <% } else { %>
+                          <a href="/cart" class="w3-bar-item w3-button">Sepetim</a>
+                        <% } %>
+                        <a href="/signout" class="w3-bar-item w3-button">Çıkış Yap</a>
+                      </div>
+                    </div>
+                  <% } else { %>
+                    <a href="/login-signup" class="nav-item nav-link">Giriş Yap veya Kaydol</a>
+                  <% } %>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid">
+        <div class="row border-top px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
+                    <h6 class="m-0">Kategoriler</h6>
+                    <i class="fa fa-angle-down text-dark"></i>
+                </a>
+                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
+                    <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link" data-toggle="dropdown">Tişört<i class="fa fa-angle-down float-right mt-1"></i></a>
+                            <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                <a href="/shop?t=erkek-tshirt" class="dropdown-item">Erkek Tişörtleri</a>
+                                <a href="/shop?t=kadin-tshirt" class="dropdown-item">Kadın Tişörtleri</a>
+                            </div>
+                        </div>
+                        <a href="/shop?t=short" class="nav-item nav-link">Şortlar</a>
+                        <a href="/shop?t=esofman" class="nav-item nav-link">Eşofmanlar</a>
+                        <a href="/shop?t=sweatshirt" class="nav-item nav-link">Sweatshirt</a>
+                        <a href="/shop?t=spor-ayakkabi" class="nav-item nav-link">Spor Ayakkabıları</a>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-lg-9">
+                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                    <a href="" class="text-decoration-none d-block d-lg-none">
+                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">Chuck</span>Muck</h1>
+                    </a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto py-0">
+                            <a href="/" class="nav-item nav-link">Anasayfa</a>
+                            <a href="/shop" class="nav-item nav-link">Alışveriş</a>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Sepet & Ödeme</a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    <a href="/cart" class="dropdown-item">Alışveriş Sepetim</a>
+                                    <a href="/checkout" class="dropdown-item">Ödeme</a>
+                                </div>
+                            </div>
+                            <a href="/contact" class="nav-item nav-link">Bizimle İletişime Geçin</a>
+                        </div>
+                       
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid bg-secondary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Alışveriş Sepetim</h1>
+            <div class="d-inline-flex">
+                <p class="m-0"><a href="">Anasayfa</a></p>
+                <p class="m-0 px-2">-</p>
+                <p class="m-0">Alışveriş Sepetim</p>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- Cart Start -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5">
+            <div class="col-lg-8 table-responsive mb-5">
+               <table class="table table-bordered text-center mb-0">
+  <thead class="bg-secondary text-dark">
+    <tr>
+      <th>Ürünler</th>
+      <th>Fiyat</th>
+      <th>Adet</th>
+      <th>Beden</th>
+      <th>Toplam Fiyat</th>
+      <th>Sepetten Sil</th>
+    </tr>
+  </thead>
+  <tbody class="align-middle">
+    <% items.forEach(item => { %>
+      <tr>
+        <td class="align-middle">
+          <% if (item.photograph) { %>
+            <img src="data:image/jpeg;base64,<%= item.photograph %>" style="width: 50px;">
+          <% } else { %>
+            <img src="img/product-placeholder.jpg" alt="Placeholder" style="width: 50px;">
+          <% } %>
+          <%= item.product_name %>
+        </td>
+        <td class="align-middle"><%= item.price %> TL</td>
+        <td class="align-middle">
+          <div class="input-group quantity mx-auto" style="width: 100px;">
+            <div class="input-group-btn">
+              <button class="btn btn-sm btn-primary btn-minus" data-id="<%= item.id %>" data-max="<%= item.max_quantity %>">
+                <i class="fa fa-minus"></i>
+              </button>
+            </div>
+            <input type="text" class="form-control form-control-sm bg-secondary text-center" value="<%= item.siparis_adeti %>" data-id="<%= item.id %>" data-price="<%= item.price %>">
+            <div class="input-group-btn">
+              <button class="btn btn-sm btn-primary btn-plus" data-id="<%= item.id %>" data-max="<%= item.max_quantity %>">
+                <i class="fa fa-plus"></i>
+              </button>
+            </div>
+          </div>
+        </td>
+        <td class="align-middle"><%= item.size %></td>
+        <td class="align-middle">
+          <span class="total-price" data-id="<%= item.id %>"><%= (item.price * item.siparis_adeti).toFixed(2) %> TL</span>
+        </td>
+        <td class="align-middle">
+          <form action="/cart/remove/<%= item.id %>" method="post">
+            <button class="btn btn-sm btn-primary">
+              <i class="fa fa-times"></i>
+            </button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+                  
+                  
+            </div>
+            <div class="col-lg-4">
+              <div class="card border-secondary mb-5">
+                <div class="card-header bg-secondary border-0">
+                  <h4 class="font-weight-semi-bold m-0">Sepet Özetim</h4>
+                </div>
+                <div class="card-body">
+                  <div class="d-flex justify-content-between mb-3 pt-1">
+                    <h6 class="font-weight-medium">Sepet Toplamı</h6>
+                    <h6 class="font-weight-medium" id="cart-total">0 TL</h6> <!-- Toplam fiyat buraya gelecek -->
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <h6 class="font-weight-medium">Kargo Ücreti</h6>
+                    <h6 class="font-weight-medium">100 TL</h6>
+                  </div>
+                </div>
+                <div class="card-footer border-secondary bg-transparent">
+                  <div class="d-flex justify-content-between mt-2">
+                    <h5 class="font-weight-bold">Toplam Fiyat</h5>
+                    <h5 class="font-weight-bold" id="grand-total">0 TL</h5> <!-- Toplam fiyat buraya gelecek -->
+                  </div>
+                  <button class="btn btn-block btn-primary my-3 py-3" onclick="window.location.href='/checkout'">Sepeti Onayla</button>
+
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <!-- Cart End -->
+
+
+    <!-- Footer Start -->
+    
+    <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
+        <div class="row px-xl-5 pt-5">
+            <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5" style="margin-left: 38%;">
+                <a href="" class="text-decoration-none">
+                    <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border border-white px-3 mr-1">Chuck</span>Muck</h1>
+                </a>
+                <p>Güvenli ve kaliteli ürünlerin adresi Chuck Muck Store 'a hepinizi bekliyoruz.</p>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i> ADANA, Seyhan, Ziyapaşa Bulvarı Rolex saat arası ,Yüzevler Apartmanı altı</p>
+                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>semihzenqin@gmail.com</p>
+                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>0551 118 3512</p>
+            </div>
+            <div class="col-lg-8 col-md-12">
+                <div class="row">
+                   
+            </div>
+        </div>
+        <div class="row border-top border-light mx-xl-5 py-4 " style="padding-left: 25%;">
+            <div class="col-md-6 px-xl-0 text-md-right">
+                <p class="mb-md-0 text-center text-md-left text-dark ">
+                    &copy; <a class="text-dark font-weight-semi-bold" href="#">Chuck Muck Store</a>. All Rights Reserved. Designed
+                    by
+                    <a class="text-dark font-weight-semi-bold" href="https://htmlcodex.com">Semih Zenginoğlu</a><br>
+                   </a>
+                </p>
+            </div>
+            <div class="col-md-6 px-xl-0 text-right text-md-end" >
+                <img class="img-fluid" src="img/payments.png" alt="">
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+
+
+    <!-- Back to Top -->
+    <a href="/cart" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="/main.js"></script>
+    <script>function myFunction() {
+        var x = document.getElementById("Demo");
+        if (x.className.indexOf("w3-show") == -1) {
+          x.className += " w3-show";
+        } else { 
+          x.className = x.className.replace(" w3-show", "");
+        }
+      }
+      document.addEventListener('DOMContentLoaded', function () {
+  // Toplam fiyatı güncelleme fonksiyonu
+  const updateTotalPrice = (id, price, quantity) => {
+    const totalPriceElement = document.querySelector(`.total-price[data-id="${id}"]`);
+    totalPriceElement.textContent = `${(price * quantity).toFixed(2)} TL`;
+  };
+
+  // Sipariş adedini ve stok bilgisini güncellemek için fetch ile sunucudan veri al
+  const getStockQuantity = (id) => {
+    return fetch(`/cart/stock/${id}`)
+      .then(response => response.json())
+      .then(data => data.stockQuantity)
+      .catch(error => {
+        console.error('Error fetching stock quantity:', error);
+        return 0; // Hata durumunda stok miktarını sıfır olarak kabul et
+      });
+  };
+
+  // Sepet toplamını hesaplama fonksiyonu
+  const updateCartTotal = () => {
+    let cartTotal = 0;
+
+    // Toplam fiyatları hesaplamak için tüm "total-price" elementlerini seç
+    document.querySelectorAll('.total-price').forEach(element => {
+      const priceText = element.textContent.trim();
+      const priceValue = parseFloat(priceText.replace(' TL', '').replace(',', '.')); // Sayısal değeri almak için TL ve virgülleri temizle
+      if (!isNaN(priceValue)) {
+        cartTotal += priceValue;
+      }
+    });
+
+    // Sepet toplamını ve grand total'ı güncelle
+    const shippingCost = 100; // Kargo ücreti sabit
+    const grandTotal = cartTotal + shippingCost;
+
+    document.getElementById('cart-total').textContent = `${cartTotal.toFixed(2)} TL`;
+    document.getElementById('grand-total').textContent = `${grandTotal.toFixed(2)} TL`;
+  };
+
+  // Sepet toplamını sayfa yüklendiğinde güncelle
+  updateCartTotal();
+
+  // Artırma ve azaltma butonlarına olay dinleyicileri ekle
+  document.querySelectorAll('.btn-minus').forEach(button => {
+    button.addEventListener('click', function () {
+      const input = document.querySelector(`input[data-id="${this.dataset.id}"]`);
+      let quantity = parseInt(input.value, 10);
+      if (quantity > 1) {
+        quantity -= 1;
+        input.value = quantity;
+        updateTotalPrice(this.dataset.id, input.dataset.price, quantity);
+        // Sunucuya yeni miktarı güncelle
+        fetch(`/cart/update/${this.dataset.id}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ quantity }),
+        }).then(() => {
+          updateCartTotal(); // Toplamı güncelle
+        });
+      }
+    });
+  });
+
+  document.querySelectorAll('.btn-plus').forEach(button => {
+    button.addEventListener('click', async function () {
+      const input = document.querySelector(`input[data-id="${this.dataset.id}"]`);
+      let quantity = parseInt(input.value, 10);
+
+      // Stok miktarını almak için sunucudan veri al
+      const stockQuantity = await getStockQuantity(this.dataset.id);
+
+      // Stok miktarına göre sipariş adedini artır
+      if (quantity < stockQuantity) {
+        quantity += 1;
+        input.value = quantity;
+        updateTotalPrice(this.dataset.id, input.dataset.price, quantity);
+        // Sunucuya yeni miktarı güncelle
+        fetch(`/cart/update/${this.dataset.id}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ quantity }),
+        }).then(() => {
+          updateCartTotal(); // Toplamı güncelle
+        });
+      } else {
+        alert('Maximum Bu Kadar Sipariş Verebilirsiniz!');
+      }
+    });
+  });
+
+  // Kullanıcı miktarı değiştirdiğinde toplamı güncelle
+  document.addEventListener('change', function (event) {
+    if (event.target.matches('input[data-id]')) {
+      updateTotalPrice(event.target.dataset.id, event.target.dataset.price, event.target.value);
+      updateCartTotal(); // Toplamı güncelle
+    }
+  });
+});
+
+</script>
+</body>
+
+</html>

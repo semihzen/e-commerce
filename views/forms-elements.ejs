@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Chuck Muck Ürün Ekleme Paneli</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style2.css" rel="stylesheet">
+
+  
+</head>
+
+<body>
+  <% if (message.success) { %>
+    <script>
+        alert("<%= message.success %>");
+    </script>
+<% } %>
+
+ 
+ <!-- ======= Header ======= -->
+ <header id="header" class="header fixed-top d-flex align-items-center">
+
+  <div class="d-flex align-items-center justify-content-between">
+    <a href="/" class="logo d-flex align-items-center">
+      
+      <span class="d-none d-lg-block">ChuckMuck</span>
+    </a>
+    <i class="bi bi-list toggle-sidebar-btn"></i>
+  </div><!-- End Logo -->
+
+ 
+
+  <nav class="header-nav ms-auto">
+    <ul class="d-flex align-items-center">
+
+      <li class="nav-item d-block d-lg-none">
+        <a class="nav-link nav-icon search-bar-toggle " href="#">
+          <i class="bi bi-search"></i>
+        </a>
+      </li><!-- End Search Icon-->
+
+      
+
+      
+      <li class="nav-item dropdown pe-3">
+
+        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+          <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+          <span class="d-none d-md-block dropdown-toggle ps-2">Semih Zenginoğlu</span>
+        </a><!-- End Profile Iamge Icon -->
+
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+          <li class="dropdown-header">
+            <h6>Semih Zenginoğlu</h6>
+            <span>Mağaza Sahibi</span>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+
+          <li>
+            <a class="dropdown-item d-flex align-items-center" href="/admin-profile">
+              <i class="bi bi-person"></i>
+              <span>Profilim</span>
+            </a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+
+          <li>
+            <a class="dropdown-item d-flex align-items-center" href="/signout">
+              <i class="bi bi-box-arrow-right"></i>
+              <span>Çıkış Yap</span>
+            </a>
+          </li>
+
+        </ul><!-- End Profile Dropdown Items -->
+      </li><!-- End Profile Nav -->
+
+    </ul>
+  </nav><!-- End Icons Navigation -->
+
+</header><!-- End Header -->
+
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+
+  <ul class="sidebar-nav" id="sidebar-nav">
+
+    <li class="nav-item">
+      <a class="nav-link " href="/admin">
+        <i class="bi bi-grid"></i>
+        <span>Panel</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-journal-text"></i><span> Ürün Ekle</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="/form">
+            <i class="bi bi-circle"></i><span>Ürün Ekleme Sayfası</span>
+          </a>
+        </li>
+        
+       
+      </ul>
+    </li><!-- End Forms Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-layout-text-window-reverse"></i><span>Tablolar</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        
+        <li>
+          <a href="/salestable">
+            <i class="bi bi-circle"></i><span>Satış Tablosu</span>
+          </a>
+        </li>
+        <li>
+          <a href="/products-table">
+            <i class="bi bi-circle"></i><span>Ürün Tablosu</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Tables Nav -->
+
+
+  
+
+    <li class="nav-heading">Admin Sayfası</li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/admin-profile">
+        <i class="bi bi-person"></i>
+        <span>Profil</span>
+      </a>
+    </li><!-- End Profile Page Nav -->
+
+   
+
+
+
+
+   
+
+
+
+    
+
+  </ul>
+</aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Ürün Ekleme</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/products-table">Ana Sayfa</a></li>
+          <li class="breadcrumb-item">Ürün Ekle</li>
+          
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">T-shirt Ekle</h5>
+              <form action="/product-add" method="post" enctype="multipart/form-data">
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">Ürün Adı</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="product_name" placeholder="Eksiksiz Yaz" required>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">Ürün Açıklaması</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="product_explain" placeholder="Müşteriye Gösterilcek Ürünün Açıklamasını yaz" required>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputPrice" class="col-sm-2 col-form-label">Fiyatı</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="price" required>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputNumber" class="col-sm-2 col-form-label"> Adet</label>
+                  <div class="col-sm-10">
+                    <input type="number" class="form-control" name="number" required>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label for="formFile" class="col-sm-2 col-form-label">Ürün Fotoğrafı</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" type="file" id="formFile" name="photograph" required>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Kalıp Seç</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" name="form" required>
+                      <option value="Slim">Slim</option>
+                      <option value="Oversize">Oversize</option>
+                      <option value="Bol">Bol</option>
+                      <option value="Crop">Crop</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label"> Ürün Cinsiyeti</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" name="gender" required>
+                      <option value="Erkek">Erkek</option>
+                      <option value="Kadın">Kadın</option>
+                      <option value="Unisex">Unisex</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Renk Seç</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" name="color"required>
+                      <option value="Siyah">Siyah</option>
+                      <option value="Beyaz">Beyaz</option>
+                      <option value="Diğer Renkler">Diğer Renkler</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Bedeni Seç</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" name="size" required>
+                      <option value="XS">XS</option>
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                      <option value="XXL">XXL</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Ürünü Kaydet</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="section">
+      <div class="row">
+          <div class="col-lg-12">
+              <div class="card">
+                  <div class="card-body">
+                      <h5 class="card-title">Eşofman Ekle</h5>
+                      <!-- Genel Form Elemanları -->
+                      <form action="/save-esofman" method="POST" enctype="multipart/form-data">
+                          <div class="row mb-3">
+                              <label for="inputText" class="col-sm-2 col-form-label">Ürün Adı</label>
+                              <div class="col-sm-10">
+                                  <input type="text" class="form-control" name="product_name" placeholder="Eksiksiz Yaz" required>
+                              </div>
+                          </div>
+                          <div class="row mb-3">
+                              <label for="inputText" class="col-sm-2 col-form-label">Ürün Açıklaması</label>
+                              <div class="col-sm-10">
+                                  <input type="text" class="form-control" name="product_explain"  required placeholder="Müşteriye Gösterilecek Ürünün Açıklamasını yaz" required>
+                              </div>
+                          </div>
+                          <div class="row mb-3">
+                              <label for="inputNumber" class="col-sm-2 col-form-label">Fiyatı</label>
+                              <div class="col-sm-10">
+                                  <input type="number" class="form-control" name="price" required>
+                              </div>
+                          </div>
+                          <div class="row mb-3">
+                              <label for="inputNumber" class="col-sm-2 col-form-label">Adet</label>
+                              <div class="col-sm-10">
+                                  <input type="number" class="form-control" name="number" required>
+                              </div>
+                          </div>
+                          <div class="row mb-3">
+                              <label for="inputFile" class="col-sm-2 col-form-label">Ürün Fotoğrafı</label>
+                              <div class="col-sm-10">
+                                  <input class="form-control" type="file" id="formFile" name="photograph" accept="image/*" required>
+                              </div>
+                          </div>
+                          <div class="row mb-3">
+                              <label class="col-sm-2 col-form-label">Renk Seç</label>
+                              <div class="col-sm-10">
+                                  <select class="form-select" name="color" required>
+                                      <option value="Siyah">Siyah</option>
+                                      <option value="Beyaz">Beyaz</option>
+                                      <option value="Diğer Renkler">Diğer Renkler</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="row mb-3">
+                              <label class="col-sm-2 col-form-label">Ürün Cinsiyeti</label>
+                              <div class="col-sm-10">
+                                  <select class="form-select" name="gender" required>
+                                      <option value="Erkek">Erkek</option>
+                                      <option value="Kadın">Kadın</option>
+                                      <option value="Unisex">Unisex</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="row mb-3">
+                              <label class="col-sm-2 col-form-label">Paça Türü</label>
+                              <div class="col-sm-10">
+                                  <select class="form-select" name="paca" required>
+                                      <option value="Boru Paça">Boru Paça</option>
+                                      <option value="Lastikli">Lastikli</option>
+                                      <option value="Dar Paça">Dar Paça</option>
+                                      <option value="Geniş Paça">Geniş Paça</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="row mb-3">
+                              <label class="col-sm-2 col-form-label">Kalıp Seç</label>
+                              <div class="col-sm-10">
+                                  <select class="form-select" name="form" required>
+                                      <option value="Slim Fit">Slim Fit</option>
+                                      <option value="Rahat Kesim">Rahat Kesim</option>
+                                      <option value="Boyfriend">Boyfriend</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="row mb-3">
+                              <label class="col-sm-2 col-form-label">Bedeni Seç</label>
+                              <div class="col-sm-10">
+                                  <select class="form-select" name="size" required>
+                                      <option value="XS">XS</option>
+                                      <option value="S">S</option>
+                                      <option value="M">M</option>
+                                      <option value="L">L</option>
+                                      <option value="XL">XL</option>
+                                      <option value="XXL">XXL</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="row mb-3">
+                              <div class="col-sm-10">
+                                  <button type="submit" class="btn btn-primary">Ürünü Kaydet</button>
+                              </div>
+                          </div>
+                      </form><!-- End Genel Form Elemanları -->
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Sweatshirt Ekle</h5>
+            <!-- General Form Elements -->
+            <form action="/save-sweatshirt" method="POST" enctype="multipart/form-data">
+              <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">Ürün Adı</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="product_name" placeholder="Eksiksiz Yaz" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">Ürün Açıklaması</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="product_explain" placeholder="Müşteriye Gösterilecek Ürünün Açıklamasını Yaz" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputPrice" class="col-sm-2 col-form-label">Fiyatı</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" name="price" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputNumber" class="col-sm-2 col-form-label">Adet</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" name="number" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Ürün Cinsiyeti</label>
+                <div class="col-sm-10">
+                  <select class="form-select" name="gender" required>
+                    <option value="Erkek">Erkek</option>
+                    <option value="Kadın">Kadın</option>
+                    <option value="Unisex">Unisex</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputFile" class="col-sm-2 col-form-label">Ürün Fotoğrafı</label>
+                <div class="col-sm-10">
+                  <input class="form-control" type="file" id="formFile" name="photograph" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Kapüşon</label>
+                <div class="col-sm-10">
+                  <select class="form-select" name="kapuson" required>
+                    <option value="Kapüşonlu">Kapüşonlu</option>
+                    <option value="Kapüşonsuz">Kapüşonsuz</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Kalıp Seç</label>
+                <div class="col-sm-10">
+                  <select class="form-select" name="form" required>
+                    <option value="Slim">Slim</option>
+                    <option value="Oversize">Oversize</option>
+                    <option value="Bol">Bol</option>
+                    <option value="Crop">Crop</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Renk Seç</label>
+                <div class="col-sm-10">
+                  <select class="form-select" name="color" required>
+                    <option value="Siyah">Siyah</option>
+                    <option value="Beyaz">Beyaz</option>
+                    <option value="Diğer Renkler">Diğer Renkler</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Bedeni Seç</label>
+                <div class="col-sm-10">
+                  <select class="form-select" name="size" required>
+                    <option value="XS">XS</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-10">
+                  <button type="submit" class="btn btn-primary">Ürünü Kaydet</button>
+                </div>
+              </div>
+            </form><!-- End General Form Elements -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Ayakkabı Ekle</h5>
+            <!-- General Form Elements -->
+            <form action="/save-shoes" method="post" enctype="multipart/form-data">
+              <div class="row mb-3">
+                <label for="product_name" class="col-sm-2 col-form-label">Ürün Adı</label>
+                <div class="col-sm-10">
+                  <input type="text" id="product_name" name="product_name" class="form-control" placeholder="Eksiksiz Yaz" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="product_explain" class="col-sm-2 col-form-label">Ürün Açıklaması</label>
+                <div class="col-sm-10">
+                  <textarea id="product_explain" name="product_explain" class="form-control" placeholder="Müşteriye Gösterilcek Ürünün Açıklamasını yaz" required></textarea>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="price" class="col-sm-2 col-form-label">Fiyatı</label>
+                <div class="col-sm-10">
+                  <input type="text" id="price" name="price" class="form-control" placeholder="Fiyatı girin" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="number" class="col-sm-2 col-form-label">Adet</label>
+                <div class="col-sm-10">
+                  <input type="number" id="number" name="number" class="form-control" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="photograph" class="col-sm-2 col-form-label">Ürün Fotoğrafı</label>
+                <div class="col-sm-10">
+                  <input class="form-control" type="file" id="photograph" name="photograph" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="marka" class="col-sm-2 col-form-label">Marka Seç</label>
+                <div class="col-sm-10">
+                  <select id="marka" name="marka" class="form-select" aria-label="Marka Seç"required>
+                    <option value="Nike">Nike</option>
+                    <option value="Adidas">Adidas</option>
+                    <option value="Pull and Bear">Pull and Bear</option>
+                    <option value="Hummel">Hummel</option>
+                    <option value="Puma">Puma</option>
+                    <option value="LumberJack">LumberJack</option>
+                    <option value="Skechers">Skechers</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="gender" class="col-sm-2 col-form-label">Ürün Cinsiyeti</label>
+                <div class="col-sm-10">
+                  <select id="gender" name="gender" class="form-select" aria-label="Cinsiyet Seç" required>
+                    <option value="Erkek">Erkek</option>
+                    <option value="Kadın">Kadın</option>
+                    <option value="Unisex">Unisex</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="color" class="col-sm-2 col-form-label">Renk Seç</label>
+                <div class="col-sm-10">
+                  <select id="color" name="color" class="form-select" aria-label="Renk Seç" required>
+                    <option value="Siyah">Siyah</option>
+                    <option value="Beyaz">Beyaz</option>
+                    <option value="Diğer Renkler">Diğer Renkler</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="size" class="col-sm-2 col-form-label">Numarasını yaz</label>
+                <div class="col-sm-10">
+                  <input type="text" id="size" name="size" class="form-control" placeholder="Ayakkabı numarasını doğru giriniz" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-10">
+                  <button type="submit" class="btn btn-primary">Ürünü Kaydet</button>
+                </div>
+              </div>
+            </form><!-- End General Form Elements -->
+          </div>
+        </div>
+      </div>
+  </section>
+  
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Şort Ekle</h5>
+            <!-- General Form Elements -->
+            <form action="/save-short" method="POST" enctype="multipart/form-data" required>
+              <div class="row mb-3">
+                <label for="product_name" class="col-sm-2 col-form-label">Ürün Adı</label>
+                <div class="col-sm-10">
+                  <input type="text" id="product_name" name="product_name" class="form-control" placeholder="Eksiksiz Yaz " required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="product_explain" class="col-sm-2 col-form-label">Ürün Açıklaması</label>
+                <div class="col-sm-10">
+                  <input type="text" id="product_explain" required name="product_explain" class="form-control" placeholder="Müşteriye Gösterilcek Ürünün Açıklamasını yaz">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="price" class="col-sm-2 col-form-label">Fiyatı</label>
+                <div class="col-sm-10">
+                  <input type="text" id="price" name="price" class="form-control" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="number" class="col-sm-2 col-form-label">Adet</label>
+                <div class="col-sm-10">
+                  <input type="number" id="number" name="number" class="form-control" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="photograph" class="col-sm-2 col-form-label">Ürün Fotoğrafı</label>
+                <div class="col-sm-10">
+                  <input class="form-control" type="file" id="photograph" name="photograph" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="form" class="col-sm-2 col-form-label">Kalıp Seç</label>
+                <div class="col-sm-10">
+                  <select id="form" name="form" class="form-select" required>
+                    <option value="Slim">Slim</option>
+                    <option value="Geniş">Geniş</option>
+                    <option value="Oversize">Oversize</option>
+                    <option value="Skinny">Skinny</option>
+                    <option value="Regular">Regular</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="color" class="col-sm-2 col-form-label">Renk Seç</label>
+                <div class="col-sm-10">
+                  <select id="color" name="color" class="form-select" required>
+                    <option value="Siyah">Siyah</option>
+                    <option value="Beyaz">Beyaz</option>
+                    <option value="Diğer Renkler">Diğer Renkler</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="gender" class="col-sm-2 col-form-label">Ürün Cinsiyeti</label>
+                <div class="col-sm-10">
+                  <select id="gender" name="gender" class="form-select" required>
+                    <option value="Erkek">Erkek</option>
+                    <option value="Kadın">Kadın</option>
+                    <option value="Unisex">Unisex</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="size" class="col-sm-2 col-form-label">Bedeni Seç</label>
+                <div class="col-sm-10">
+                  <select id="size" name="size" class="form-select" required>
+                    <option value="XS">XS</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-10">
+                  <button type="submit" class="btn btn-primary">Ürünü Kaydet</button>
+                </div>
+              </div>
+            </form>
+            <!-- End General Form Elements -->
+          </div>
+        </div>
+      </div>
+  </section>
+  
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Semih Zenginoğlu</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+      Designed by <a href="https://www.linkedin.com/in/semih-zengino%C4%9Flu-95378b227/">Semih Zenginoğlu</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main2.js"></script>
+  
+
+</body>
+
+</html>
