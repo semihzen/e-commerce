@@ -14,5 +14,5 @@ For this site, I used MySQL as the database because it seems more adaptable and 
 
 
 **DATABASE SCHEMA**
+![e-commerce](https://github.com/user-attachments/assets/6fa9d1b3-ae53-43b3-ac90-0222a2a8d756)
 
-![5df77e1c-1303-4509-8e69-5d4615fcf86a](https://github.com/user-attachments/assets/6b5c35fe-d69e-489e-82be-0586499a9c60)
