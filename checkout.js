@@ -70,7 +70,7 @@ router.post('/checkout', (req, res) => {
 
     // Sepetteki ürünleri almak için SQL sorgusu
     const selectQuery = `
-        SELECT id, product_name, siparis_adeti, price, size, photograph, table_name
+        SELECT p_id, product_name, siparis_adeti, price, size, photograph, table_name, number
         FROM cart
         WHERE user_id = ?
     `;
@@ -83,8 +83,8 @@ router.post('/checkout', (req, res) => {
 
         // `satis_tablosu` tablosuna ekleme işlemi için SQL sorgusu
         const insertQuery = `
-            INSERT INTO satis_tablosu (user_id, product_name, satılan_adet, p_id, table_name, toplam_fiyat, price, size, photograph)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO satis_tablosu (user_id, product_name, satilan_adet, p_id, table_name, toplam_fiyat, price, size, photograph, durum)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         `;
 
         // `satis_tablosu` tablosuna ekleme işlemini gerçekleştirin
@@ -93,15 +93,30 @@ router.post('/checkout', (req, res) => {
                 userId, // user_id (oturumu başlatan kullanıcının ID'si)
                 item.product_name,
                 item.siparis_adeti,
-                item.id, // p_id
+                item.p_id, // p_id
                 item.table_name, // table_name (cart tablosundan alınan bilgi)
                 item.siparis_adeti * item.price, // toplam_fiyat
                 item.price,
                 item.size,
-                item.photograph
+                item.photograph,
+                'Siparişiniz Hazırlanıyor'
             ];
 
             db.query(insertQuery, values, (err) => {
+                if (err) {
+                    console.error(err);
+                    return res.status(500).send('Server Error');
+                }
+            });
+
+            // Dinamik olarak tablo adını kullanarak number değerini güncelle
+            const updateQuery = `
+                UPDATE ${item.table_name}
+                SET number = number - ?
+                WHERE id = ?
+            `;
+
+            db.query(updateQuery, [item.siparis_adeti, item.p_id], (err) => {
                 if (err) {
                     console.error(err);
                     return res.status(500).send('Server Error');
@@ -118,7 +133,7 @@ router.post('/checkout', (req, res) => {
             }
 
             // Ödeme işlemi tamamlandığında başarı mesajı ve yönlendirme
-            req.flash('message', 'Ürün başarıyla sepete eklendi');
+            req.flash('message', 'Ödeme başarıyla tamamlandı');
             res.redirect('/checkout'); // Başarı mesajı ile checkout sayfasına yönlendir
         });
     });

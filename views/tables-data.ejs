@@ -15,7 +15,9 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -40,133 +42,134 @@
 
 <body>
 
-  
- <!-- ======= Header ======= -->
- <header id="header" class="header fixed-top d-flex align-items-center">
 
-  <div class="d-flex align-items-center justify-content-between">
-    <a href="/" class="logo d-flex align-items-center">
-      
-      <span class="d-none d-lg-block">ChuckMuck</span>
-    </a>
-    <i class="bi bi-list toggle-sidebar-btn"></i>
-  </div><!-- End Logo -->
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
 
- 
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="/" class="logo d-flex align-items-center">
 
-  <nav class="header-nav ms-auto">
-    <ul class="d-flex align-items-center">
+        <span class="d-none d-lg-block">ChuckMuck</span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
 
-      <li class="nav-item d-block d-lg-none">
-        <a class="nav-link nav-icon search-bar-toggle " href="#">
-          <i class="bi bi-search"></i>
+
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <li class="nav-item d-block d-lg-none">
+          <a class="nav-link nav-icon search-bar-toggle " href="#">
+            <i class="bi bi-search"></i>
+          </a>
+        </li><!-- End Search Icon-->
+
+
+
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">Semih Zenginoğlu</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>Semih Zenginoğlu</h6>
+              <span>Mağaza Sahibi</span>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="/admin-profile">
+                <i class="bi bi-person"></i>
+                <span>Profilim</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="/signout">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Çıkış Yap</span>
+              </a>
+            </li>
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="/admin">
+          <i class="bi bi-grid"></i>
+          <span>Panel</span>
         </a>
-      </li><!-- End Search Icon-->
+      </li><!-- End Dashboard Nav -->
 
-      
 
-      
-      <li class="nav-item dropdown pe-3">
-
-        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-          <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-          <span class="d-none d-md-block dropdown-toggle ps-2">Semih Zenginoğlu</span>
-        </a><!-- End Profile Iamge Icon -->
-
-        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-          <li class="dropdown-header">
-            <h6>Semih Zenginoğlu</h6>
-            <span>Mağaza Sahibi</span>
-          </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span> Ürün Ekle</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <hr class="dropdown-divider">
-          </li>
-
-          <li>
-            <a class="dropdown-item d-flex align-items-center" href="/admin-profile">
-              <i class="bi bi-person"></i>
-              <span>Profilim</span>
-            </a>
-          </li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-
-          <li>
-            <a class="dropdown-item d-flex align-items-center" href="/signout">
-              <i class="bi bi-box-arrow-right"></i>
-              <span>Çıkış Yap</span>
+            <a href="/form">
+              <i class="bi bi-circle"></i><span>Ürün Ekleme Sayfası</span>
             </a>
           </li>
 
-        </ul><!-- End Profile Dropdown Items -->
-      </li><!-- End Profile Nav -->
+
+        </ul>
+      </li><!-- End Forms Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-layout-text-window-reverse"></i><span>Tablolar</span><i
+            class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+          <li>
+            <a href="/salestable">
+              <i class="bi bi-circle"></i><span>Satış Tablosu</span>
+            </a>
+          </li>
+          <li>
+            <a href="/products-table">
+              <i class="bi bi-circle"></i><span>Ürün Tablosu</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Tables Nav -->
+
+
+
+
+      <li class="nav-heading">Admin Sayfası</li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/admin-profile">
+          <i class="bi bi-person"></i>
+          <span>Profil</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
 
     </ul>
-  </nav><!-- End Icons Navigation -->
-
-</header><!-- End Header -->
-
-<!-- ======= Sidebar ======= -->
-<aside id="sidebar" class="sidebar">
-
-  <ul class="sidebar-nav" id="sidebar-nav">
-
-    <li class="nav-item">
-      <a class="nav-link " href="/admin">
-        <i class="bi bi-grid"></i>
-        <span>Panel</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
-
-
-    <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-journal-text"></i><span> Ürün Ekle</span><i class="bi bi-chevron-down ms-auto"></i>
-      </a>
-      <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
-          <a href="/form">
-            <i class="bi bi-circle"></i><span>Ürün Ekleme Sayfası</span>
-          </a>
-        </li>
-        
-       
-      </ul>
-    </li><!-- End Forms Nav -->
-
-    <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-layout-text-window-reverse"></i><span>Tablolar</span><i class="bi bi-chevron-down ms-auto"></i>
-      </a>
-      <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        
-        <li>
-          <a href="/salestable">
-            <i class="bi bi-circle"></i><span>Satış Tablosu</span>
-          </a>
-        </li>
-        <li>
-          <a href="/products-table">
-            <i class="bi bi-circle"></i><span>Ürün Tablosu</span>
-          </a>
-        </li>
-      </ul>
-    </li><!-- End Tables Nav -->
-
-
-  
-
-    <li class="nav-heading">Admin Sayfası</li>
-
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="/admin-profile">
-        <i class="bi bi-person"></i>
-        <span>Profil</span>
-      </a>
-    </li><!-- End Profile Page Nav -->
-
-  </ul>
 
   </aside><!-- End Sidebar-->
 
@@ -186,43 +189,65 @@
     <section class="section">
       <div class="row">
         <div class="col-lg-12">
-
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Satış Tablosu</h5>
-              
               <!-- Table with stripped rows -->
               <table class="table datatable">
                 <thead>
                   <tr>
-                    <th>
-                     Müşteri Adı
-                    </th>
-                    <th>
-                      Ürünün Fotoğrafı
-                     </th>
-                    <th>
-                      Ürünün Adı
-                     </th>
-                     <th>
-                     Ürün Fotoğrafı
-                     </th>
+                    <th>Müşteri Adı</th>
+                    <th>Ürünün Fotoğrafı</th>
+                    <th>Ürünün Adı</th>
                     <th>Ödediği Miktar (TL)</th>
-                    <th>Ürünün satıldığı adres</th>
+                    <th>Satış Adresi</th>
                     <th data-type="date" data-format="DD/MM/YYYY">Satış Günü</th>
-                    <th>Aldığı Ürün</th>
+                    <th>Satılan Adet</th>
                     <th>Bedeni veya Numarası</th>
                   </tr>
                 </thead>
+                <!-- views/tables-data.ejs -->
                 <tbody>
-                 
+                  <% if (data && data.length> 0) { %>
+                    <% data.forEach(item=> { %>
+                      <tr>
+                        <td>
+                          <%= item.name %>
+                            <%= item.surname %>
+                        </td>
+                        <td><img src="<%= item.photograph %>" width="50"></td>
+                        <td>
+                          <%= item.product_name %>
+                        </td>
+                        <td>
+                          <%= item.toplam_fiyat %> TL
+                        </td>
+                        <td>
+                          <%= item.adres %>
+                        </td>
+                        <td>
+                          <% const date = new Date(item.satilan_gun); %>
+                    <% const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`; %>
+                    <%= formattedDate %>
+                        </td>
+                        <td>
+                          <%= item.satilan_adet %>
+                        </td>
+                        <td>
+                          <%= item.size %>
+                        </td>
+                      </tr>
+                      <% }) %>
+                        <% } else { %>
+                          <tr>
+                            <td colspan="8">Veri bulunamadı</td>
+                          </tr>
+                          <% } %>
                 </tbody>
-              </table>
-              <!-- End Table with stripped rows -->
 
+                <!-- End Table with stripped rows -->
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -230,20 +255,9 @@
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="copyright">
-      &copy; Copyright <strong><span>Semih Zenginoğlu</span></strong>. All Rights Reserved
-    </div>
-    <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://www.linkedin.com/in/semih-zengino%C4%9Flu-95378b227/">Semih Zenginoğlu</a>
-    </div>
-  </footer><!-- End Footer -->
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+ 
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>

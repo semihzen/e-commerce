@@ -17,12 +17,12 @@ db.connect((err) => {
 
 // Ürün sayısını al ve index.ejs dosyasına gönder
 router.get('/', (req, res) => {
-  const sqlMaleTshirt = "SELECT COUNT(*) AS count FROM tshirt WHERE gender IN ('Erkek', 'Unisex')";
-  const sqlFemaleTshirt = "SELECT COUNT(*) AS count FROM tshirt WHERE gender IN ('Kadın', 'Unisex')";
-  const sqlShort = "SELECT COUNT(*) AS count FROM short";
-  const sqlSweatshirt = "SELECT COUNT(*) AS count FROM sweatshirt";
-  const sqlShoes = "SELECT COUNT(*) AS count FROM shoes";
-  const sqlEsofman = "SELECT COUNT(*) AS count FROM esofman";
+  const sqlMaleTshirt = "SELECT COUNT(*) AS count FROM tshirt WHERE gender IN ('Erkek', 'Unisex') AND number > 0";
+  const sqlFemaleTshirt = "SELECT COUNT(*) AS count FROM tshirt WHERE gender IN ('Kadın', 'Unisex') AND number > 0";
+  const sqlShort = "SELECT COUNT(*) AS count FROM short WHERE number > 0";
+  const sqlSweatshirt = "SELECT COUNT(*) AS count FROM sweatshirt WHERE number > 0";
+  const sqlShoes = "SELECT COUNT(*) AS count FROM shoes WHERE number > 0";
+  const sqlEsofman = "SELECT COUNT(*) AS count FROM esofman WHERE number > 0";
 
   db.query(sqlMaleTshirt, (err, maleTshirtResult) => {
     if (err) throw err;
@@ -72,30 +72,30 @@ router.get('/shop', (req, res) => {
 
   // URL parametresine göre tablo belirleyin
   switch (req.query.t) {
-      case 'erkek-tshirt':
-          table = 'tshirt';
-          genderFilter = "gender IN ('Erkek', 'Unisex')";
-          break;
-      case 'kadin-tshirt':
-          table = 'tshirt';
-          genderFilter = "gender IN ('Kadın', 'Unisex')";
-          break;
-      case 'short':
-          table = 'short';
-          break;
-      case 'esofman':
-          table = 'esofman';
-          break;
-      case 'sweatshirt':
-          table = 'sweatshirt';
-          break;
-      case 'spor-ayakkabi':
-          table = 'shoes';
-          break;
-      default:
-          table = 'tshirt'; // Varsayılan tablo
-          genderFilter = "gender IN ('Erkek', 'Unisex')";
-          break;
+    case 'erkek-tshirt':
+      table = 'tshirt';
+      genderFilter = "gender IN ('Erkek', 'Unisex')";
+      break;
+    case 'kadin-tshirt':
+      table = 'tshirt';
+      genderFilter = "gender IN ('Kadın', 'Unisex')";
+      break;
+    case 'short':
+      table = 'short';
+      break;
+    case 'esofman':
+      table = 'esofman';
+      break;
+    case 'sweatshirt':
+      table = 'sweatshirt';
+      break;
+    case 'spor-ayakkabi':
+      table = 'shoes';
+      break;
+    default:
+      table = 'tshirt'; // Varsayılan tablo
+      genderFilter = "gender IN ('Erkek', 'Unisex')";
+      break;
   }
 
   // Fiyat filtresini kontrol et
@@ -125,10 +125,10 @@ router.get('/shop', (req, res) => {
   }
 
   // SQL sorgusunu oluştur
-  let sql = `SELECT id, product_name, price, photograph FROM ${table}`;
+  let sql = `SELECT id, product_name, price, photograph FROM ${table} WHERE number > 0`;
   const filters = [genderFilter, priceFilter, colorFilter].filter(Boolean).join(' AND ');
   if (filters.length > 0) {
-    sql += ` WHERE ${filters}`;
+    sql += ` AND ${filters}`;
   }
 
   db.query(sql, (err, results) => {

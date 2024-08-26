@@ -127,8 +127,8 @@ router.post('/add-to-cart', (req, res) => {
       }
 
       // Aynı ürün sepette yoksa, ürünü sepete ekle
-      const addToCartSql = `INSERT INTO cart (user_id, siparis_adeti, price, product_name, size, photograph, table_name ,p_id)
-                            SELECT ?, ?, price, product_name, ?, photograph, ? ,${productId}
+      const addToCartSql = `INSERT INTO cart (user_id, siparis_adeti, price, product_name, size, photograph, table_name ,p_id,number)
+                            SELECT ?, ?, price, product_name, ?, photograph, ? ,${productId},number
                             FROM ${table} 
                             WHERE id = ?`;
 

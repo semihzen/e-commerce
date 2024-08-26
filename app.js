@@ -11,7 +11,9 @@ const productShowRoutes = require('./product-show');
 const indexRoutes = require('./index');
 const detailRouter = require('./detail');
 const cartRouter = require('./cart');
-const checkoutRouter = require('./checkout'); 
+const checkoutRouter = require('./checkout');
+const satisRouter = require('./satistablosu');  
+const profileRoutes = require('./profilee');
 
 
 
@@ -46,6 +48,7 @@ function authMiddleware(req, res, next) {
   } else {
     return res.redirect('/404');
   }
+
 }
 
 
@@ -59,7 +62,10 @@ app.use('/', indexRoutes);
 app.use('/', detailRouter);
 app.use('/', cartRouter);
 app.use('/',checkoutRouter);
-app.get("/", (req, res) => {
+app.use('/', satisRouter); // Burada `satisRouter` doğru şekilde kullanılıyor.
+app.use('/', profileRoutes);
+
+app.get("/", (_req, res) => {
   res.render("index");
 });
 
@@ -94,6 +100,9 @@ app.get("/contact", (req, res) => {
 });
 app.get("/edit", (req, res) => {
   res.render("edit-product-form");
+});
+app.get("/myprofile", (req, res) => {
+  res.render("profile");
 });
 
 app.get("/login-signup", (req, res) => {

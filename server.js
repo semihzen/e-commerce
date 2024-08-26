@@ -70,6 +70,86 @@ router.post('/signup', (req, res) => {
   });
 });
 
+// Şifre değiştirme sayfası için GET isteğini işle
+router.get('/change-password', (req, res) => {
+  res.render('users-profile', {
+    message: req.flash('message') // Flash mesajları gönder
+  });
+});
 
+// Şifre değiştirme formu için POST isteğini işle
+router.post('/change-password', (req, res) => {
+  const userId = req.session.userId; // Oturumda tanımlanan kullanıcı ID'si
+  const { password, newpassword, renewpassword } = req.body;
+
+  if (!userId) {
+    req.flash('message', 'Giriş yapmanız gerekiyor');
+    return res.redirect('/login-signup'); // Kullanıcı giriş yapmamışsa login sayfasına yönlendir
+  }
+
+  if (!password || !newpassword || !renewpassword) {
+    req.flash('message', 'Mevcut şifre, yeni şifre ve yeni şifrenizi doğrulamanız gereklidir');
+    return res.redirect('/change-password');
+  }
+
+  if (newpassword !== renewpassword) {
+    req.flash('message', 'Yeni şifreler eşleşmiyor');
+    return res.redirect('/change-password');
+  }
+
+  if (newpassword.length < 6) {
+    req.flash('message', 'Yeni şifre en az 6 karakter uzunluğunda olmalıdır');
+    return res.redirect('/change-password');
+  }
+
+  // Kullanıcının mevcut şifresini doğrula
+  const query = 'SELECT password FROM users WHERE id = ?';
+  db.query(query, [userId], (err, results) => {
+    if (err) {
+      console.error(err);
+      req.flash('message', 'Şifre doğrulama hatası');
+      return res.redirect('/change-password');
+    }
+
+    if (results.length === 0) {
+      req.flash('message', 'Kullanıcı bulunamadı');
+      return res.redirect('/change-password');
+    }
+
+    bcrypt.compare(password, results[0].password, (err, isMatch) => {
+      if (err) {
+        console.error(err);
+        req.flash('message', 'Şifre karşılaştırma hatası');
+        return res.redirect('/change-password');
+      }
+
+      if (!isMatch) {
+        req.flash('message', 'Mevcut şifre yanlış');
+        return res.redirect('/change-password');
+      }
+
+      // Yeni şifreyi hashle ve veritabanına güncelle
+      bcrypt.hash(newpassword, 10, (err, hashedPassword) => {
+        if (err) {
+          console.error(err);
+          req.flash('message', 'Yeni şifre hashleme hatası');
+          return res.redirect('/change-password');
+        }
+
+        const updateQuery = 'UPDATE users SET password = ? WHERE id = ?';
+        db.query(updateQuery, [hashedPassword, userId], (err) => {
+          if (err) {
+            console.error(err);
+            req.flash('message', 'Şifre güncellenirken hata oluştu');
+            return res.redirect('/change-password');
+          }
+
+          req.flash('message', 'Şifre başarıyla değiştirildi');
+          res.redirect('/change-password');
+        });
+      });
+    });
+  });
+});
 
 module.exports = router;
